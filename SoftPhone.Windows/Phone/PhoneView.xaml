@@ -1,0 +1,181 @@
+﻿<UserControl x:Class="SoftPhone.Windows.Phone.PhoneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:conv="clr-namespace:SoftPhone.Windows.Converters"
+             xmlns:local="clr-namespace:SoftPhone.Windows.Phone"
+             mc:Ignorable="d" 
+             d:DesignHeight="450"
+             d:DesignWidth="800">
+    <UserControl.Resources>
+        <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter" />
+        <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter"
+                                                    Negate="True"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <ScrollViewer>
+            <TextBlock Text="{Binding Status}"
+                       TextWrapping="Wrap"
+                       Padding="5" />
+        </ScrollViewer>
+
+        <Grid x:Name="Phone"
+              Grid.Column="1">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Grid x:Name="PhoneDisplay">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <TextBox x:Name="tbCli"
+                         Text="{Binding Cli}"
+                         Grid.Row="0"
+                         Width="120"
+                         Height="25">
+                    <TextBox.InputBindings>
+                        <KeyBinding Key="Enter"
+                                    Command="{Binding DialCommand}"
+                                    CommandParameter="{Binding Text, ElementName=tbCli}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
+
+                <Grid x:Name="DisplayControls"
+                      Grid.Row="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Content="Backspace"
+                            Command="{Binding BackspaceCommand}"
+                            Grid.Column="0" />
+                    <Button Content="Clear"
+                            Command="{Binding ClearCommand}"
+                            Grid.Column="1" />
+                    <Button Content="Cancel"
+                            Command="{Binding CancelCommand}"
+                            Grid.Column="2" />
+                </Grid>
+
+            </Grid>
+
+            <Grid x:Name="PhoneButtons"
+                  Grid.Row="1">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Button Content="1"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="1"
+                        Grid.Column="0"
+                        Grid.Row="0" />
+                <Button Content="2"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="2"
+                        Grid.Column="1"
+                        Grid.Row="0" />
+                <Button Content="3"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="3"
+                        Grid.Column="2"
+                        Grid.Row="0" />
+
+                <Button Content="4"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="4"
+                        Grid.Column="0"
+                        Grid.Row="1" />
+                <Button Content="5"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="5"
+                        Grid.Column="1"
+                        Grid.Row="1" />
+                <Button Content="6"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="6"
+                        Grid.Column="2"
+                        Grid.Row="1" />
+
+                <Button Content="7"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="7"
+                        Grid.Column="0"
+                        Grid.Row="2" />
+                <Button Content="8"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="8"
+                        Grid.Column="1"
+                        Grid.Row="2" />
+                <Button Content="9"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="9"
+                        Grid.Column="2"
+                        Grid.Row="2" />
+
+                <Button Content="*"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="*"
+                        Grid.Column="0"
+                        Grid.Row="3" />
+                <Button Content="0"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="0"
+                        Grid.Column="1"
+                        Grid.Row="3" />
+                <Button Content="#"
+                        Command="{Binding DigitPressedCommand}"
+                        CommandParameter="#"
+                        Grid.Column="2"
+                        Grid.Row="3" />
+
+                <Button Content="Hold"
+                        Command="{Binding HoldCommand}"
+                        Grid.Column="0"
+                        Grid.Row="4" />
+                <Button Content="Transfer"
+                        Command="{Binding TransferCommand}"
+                        Grid.Column="1"
+                        Grid.Row="4" />
+                <Button Content="Dial"
+                        Command="{Binding DialCommand}"
+                        CommandParameter="{Binding Cli}"
+                        Grid.Column="2"
+                        Grid.Row="4"
+                        Visibility="{Binding IncomingCall, Converter={StaticResource NegVisConverter}}" />
+                <Button Content="Answer"
+                        Command="{Binding AnswerCommand}"
+                        Grid.Column="2"
+                        Grid.Row="4"
+                        Visibility="{Binding IncomingCall, Converter={StaticResource VisConverter}}" />
+
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

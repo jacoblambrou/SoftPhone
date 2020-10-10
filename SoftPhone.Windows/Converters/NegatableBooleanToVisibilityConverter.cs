@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+
+namespace SoftPhone.Windows.Converters
+{
+    public class NegatableBooleanToVisibilityConverter
+    {
+        public NegatableBooleanToVisibilityConverter()
+        {
+            FalseVisibility = Visibility.Collapsed;
+        }
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo cultureInfo)
+        {
+            bool bVal;
+            bool result = bool.TryParse(value.ToString(), out bVal);
+
+            if (!result)
+                return value;
+
+            if (bVal && !Negate)
+                return Visibility.Visible;
+
+            if (bVal && Negate)
+                return FalseVisibility;
+
+            if (!bVal && Negate)
+                return Visibility.Visible;
+
+            if (!bVal && !Negate)
+                return FalseVisibility;
+
+            else
+                return Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo cultureInfo)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Negate { get; set; }
+        public Visibility FalseVisibility { get; set; }
+    }
+}
