@@ -7,9 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPhone.Windows", "SoftPh
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPhone.Data", "SoftPhone.Data\SoftPhone.Data.csproj", "{E3434840-7E19-4EAF-AD7C-25B6162F20E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPhone.Business", "SoftPhone.Business\SoftPhone.Business.csproj", "{434AA1E9-7CFC-4489-8C49-8635A7ABE764}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPhone.Business", "SoftPhone.Business\SoftPhone.Business.csproj", "{434AA1E9-7CFC-4489-8C49-8635A7ABE764}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPhone.Common", "SoftPhone.Common\SoftPhone.Common.csproj", "{FA72BE64-F0A3-43B5-B6DE-C169068FC7D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SoftPhone.Common", "SoftPhone.Common\SoftPhone.Common.csproj", "{FA72BE64-F0A3-43B5-B6DE-C169068FC7D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftPhone.Common.Tests", "SoftPhone.Common.Tests\SoftPhone.Common.Tests.csproj", "{7C0DBADA-62DC-4557-B6E7-F70BF7BE16CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{FA72BE64-F0A3-43B5-B6DE-C169068FC7D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA72BE64-F0A3-43B5-B6DE-C169068FC7D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA72BE64-F0A3-43B5-B6DE-C169068FC7D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7C0DBADA-62DC-4557-B6E7-F70BF7BE16CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C0DBADA-62DC-4557-B6E7-F70BF7BE16CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C0DBADA-62DC-4557-B6E7-F70BF7BE16CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C0DBADA-62DC-4557-B6E7-F70BF7BE16CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
