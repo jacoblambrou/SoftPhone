@@ -6,15 +6,17 @@ namespace SoftPhone.Common.SipClientModels
 {
     public class SipSession
     {
-        public readonly string Tag;
-        public readonly string CallId;
-        public readonly int ListeningPort;
+        private readonly string _callId;
+        private readonly int _listeningPort;
+        private readonly CallDirection _callDirection;
 
-        public SipSession(string tag, string callId, int listeningPort)
+        public SipMessage _sipMessage;
+
+        public SipSession(string callId, int listeningPort, CallDirection callDirection)
         {
-            Tag = tag;
-            CallId = callId;
-            ListeningPort = listeningPort;
+            _callId = callId;
+            _listeningPort = listeningPort;
+            _callDirection = callDirection;
         }
     }
 }

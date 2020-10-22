@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftPhone.Common.SipClientModels.Headers.Bases
+namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
 {
     public class StatusRequestLineHeaderBase : HeaderBase
     {

@@ -6,9 +6,9 @@ namespace SoftPhone.Common.SipClientModels.UserAgents
 {
     public class SipUserAgentClient
     {
-        public SipUser SipUser;
-        public LocalSipUserAgentServer LocalSipUas;
-        public RemoteSipUserAgentServer RemoteSipUas;
+        public SipUser SipUser { get; private set; }
+        public LocalSipUserAgentServer LocalSipUas { get; private set; }
+        public RemoteSipUserAgentServer RemoteSipUas { get; private set; }
         
         public SipUserAgentClient()
         {

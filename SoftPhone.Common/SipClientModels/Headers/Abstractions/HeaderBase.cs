@@ -1,9 +1,8 @@
 ﻿using SoftPhone.Common.SipClientModels.UserAgents;
+using SoftPhone.Common.StringHelpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace SoftPhone.Common.SipClientModels.Headers.Bases
+namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
 {
     public class HeaderBase
     {
@@ -11,7 +10,6 @@ namespace SoftPhone.Common.SipClientModels.Headers.Bases
         public string Address { get; private set; }
         public int Port { get; private set; }
         public SipProtocol SipProtocol { get; private set; }
-        public SipUri SipUri { get; private set; }
 
         public HeaderBase(SipUserAgentClient sipUac, SipTransportManager sipTransportManager)
         {
@@ -26,11 +24,6 @@ namespace SoftPhone.Common.SipClientModels.Headers.Bases
                 return localSipUac.SipPort;
             else
                 return localSipUac.SipsPort;
-        }
-
-        public void SetSipUri(string user, string host, SipProtocol sipProtocol)
-        {
-            SipUri.SetSipUri(user, host, SipProtocol);
         }
     }
 }

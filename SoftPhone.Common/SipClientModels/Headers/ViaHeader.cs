@@ -1,11 +1,11 @@
-﻿using SoftPhone.Common.SipClientModels.Headers.Bases;
+﻿using SoftPhone.Common.SipClientModels.Headers.Abstractions;
 using SoftPhone.Common.SipClientModels.UserAgents;
 using SoftPhone.Common.StringHelpers;
 using System;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class ViaHeader : HeaderBase
+    public class ViaHeader : HeaderBase, IHeader
     {
         private string Branch => HashGenerator.ConvertToHash($"{DateTime.Now:dd/MM/yyyy HH:mm:ss.fff}{Guid.NewGuid()}");
         private string RPort = "rport";
@@ -16,5 +16,7 @@ namespace SoftPhone.Common.SipClientModels.Headers
         {
             SipTransport = sipTransportManager.SipTransport;
         }
+
+        public string GetHeader() => $"Via: SIP/2.0/{SipTransport} {Address}:{Port};{RPort};branch=z9hG4bK{Branch}";
     }
 }

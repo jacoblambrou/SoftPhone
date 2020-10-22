@@ -41,31 +41,31 @@ namespace SoftPhone.Common.SipClientModels
         ServiceUnavailable = 503,
         VersionNotSupported = 505,
         Unwanted = 607,
-        Rejected = 608,
+        Rejected = 608
     }
     
     public enum SipMethod
     {
-        Ack,
-        Bye,
-        Cancel,
-        Info,
-        Invite,
-        Message,
-        Notify,
-        Options,
-        Prack,
-        Publish,
-        Refer,
-        Register,
-        Subscribe,
-        Update,
+        ACK,
+        BYE,
+        CANCEL,
+        INFO,
+        INVITE,
+        MESSAGE,
+        NOTIFY,
+        OPTIONS,
+        PRACK,
+        PUBLISH,
+        REFER,
+        REGISTER,
+        SUBSCRIBE,
+        UPDATE
     }
 
     public enum SipProtocol
     {
         sip,
-        sips,
+        sips
     }
 
     public enum ContentType
@@ -76,7 +76,13 @@ namespace SoftPhone.Common.SipClientModels
 
     public enum SipTransport
     {
-        Tcp,
-        Udp,
+        TCP,
+        UDP
+    }
+
+    public enum CallDirection
+    {
+        Incoming,
+        Outgoing
     }
 }

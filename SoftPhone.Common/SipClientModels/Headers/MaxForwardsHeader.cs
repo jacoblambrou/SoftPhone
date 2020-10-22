@@ -5,8 +5,10 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class AuthorizationHeader : IHeader
+    public class MaxForwardsHeader : IHeader
     {
-        
+        private int _maxForwards = 70;
+
+        public string GetHeader() => $"Max-Forwards: {_maxForwards}";
     }
 }

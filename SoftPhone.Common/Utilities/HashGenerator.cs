@@ -35,16 +35,16 @@ namespace SoftPhone.Common.StringHelpers
             return sBuilder.ToString();
         }
 
-        // Verify a hash against a string.
-        private static bool VerifyHash(HashAlgorithm hashAlgorithm, string input, string hash)
-        {
-            // Hash the input.
-            var hashOfInput = GetHash(hashAlgorithm, input);
+        //// Verify a hash against a string.
+        //private static bool VerifyHash(HashAlgorithm hashAlgorithm, string input, string hash)
+        //{
+        //    // Hash the input.
+        //    var hashOfInput = GetHash(hashAlgorithm, input);
 
-            // Create a StringComparer an compare the hashes.
-            StringComparer comparer = StringComparer.OrdinalIgnoreCase;
+        //    // Create a StringComparer an compare the hashes.
+        //    StringComparer comparer = StringComparer.OrdinalIgnoreCase;
 
-            return comparer.Compare(hashOfInput, hash) == 0;
-        }
+        //    return comparer.Compare(hashOfInput, hash) == 0;
+        //}
     }
 }
