@@ -3,11 +3,11 @@ using SoftPhone.Common.SipClientModels.UserAgents;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class StatusLine : HeaderBase
+    public class StatusLine : HeaderBaseWithSipUri
     {
         private SipResponse _sipResponse;
 
-        public StatusLine(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipResponse sipResponse) : base (sipUac, sipTransportManager)
+        public StatusLine(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipResponse sipResponse) : base(sipUac, sipTransportManager)
         {
             HeaderPrefix = "Status-Line:";
             _sipResponse = sipResponse;
