@@ -1,28 +1,23 @@
-﻿namespace SoftPhone.Common.SipClientModels
+﻿using SoftPhone.Common.SipClientModels.Enums;
+
+namespace SoftPhone.Common.SipClientModels
 {
     public class SipUri
     {
-        private string User;
-        private string Host;
-        private SipProtocol SipProtocol;
+        private string user;
+        private string host;
+        private SipProtocol sipProtocol;
 
         public SipUri(string user, string host, SipProtocol sipProtocol)
         {
-            User = user;
-            Host = host;
-            SipProtocol = sipProtocol;
+            this.user = user;
+            this.host = host;
+            this.sipProtocol = sipProtocol;
         }
 
         public string GetSipUri()
         {
-            return $"{SipProtocol.ToString()}:{User}@{Host}";
+            return $"{this.sipProtocol.ToString()}:{this.user}@{this.host}";
         }
-
-        //public void SetSipUri(string user, string host, SipProtocol sipProtocol)
-        //{
-        //    User = user;
-        //    Host = host;
-        //    SipProtocol = sipProtocol;
-        //}
     }
 }

@@ -9,13 +9,13 @@ namespace SoftPhone.Windows
 {
     public class MainWindowViewModel : BindableBase
     {
-        private PhoneViewModel _phoneViewModel;
+        private PhoneViewModel phoneViewModel;
 
         public MainWindowViewModel()
         {
             LoadedCommand = new DelegateCommand(OnLoaded);
 
-            _phoneViewModel = new PhoneViewModel();
+            this.phoneViewModel = new PhoneViewModel();
         }
 
         private BindableBase _currentViewModel;
@@ -29,7 +29,7 @@ namespace SoftPhone.Windows
 
         private void OnLoaded()
         {
-            CurrentViewModel = _phoneViewModel;
+            CurrentViewModel = this.phoneViewModel;
         }
     }
 }

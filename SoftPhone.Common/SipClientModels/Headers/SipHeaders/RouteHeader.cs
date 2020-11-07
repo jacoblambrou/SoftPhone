@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftPhone.Common.SipClientModels.Headers
+namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 {
     public class RouteHeader : HeaderBaseWithSipUri
     {

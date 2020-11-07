@@ -1,4 +1,5 @@
-﻿using SoftPhone.Common.SipClientModels.UserAgents;
+﻿using SoftPhone.Common.SipClientModels.Enums;
+using SoftPhone.Common.SipClientModels.UserAgents;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,10 +8,10 @@ namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
 {
     public abstract class HeaderBaseWithSipUri : HeaderBase
     {
-        public string User { get; private set; }                    // TODO: obtain User
-        public string Address { get; private set; }
-        public int Port { get; private set; }
-        public SipProtocol SipProtocol { get; private set; }
+        protected string User { get; set; }                    // TODO: obtain User
+        protected string Address { get; set; }
+        protected int Port { get; set; }
+        protected SipProtocol SipProtocol { get; set; }
 
         public HeaderBaseWithSipUri(SipUserAgentClient sipUac, SipTransportManager sipTransportManager)
         {

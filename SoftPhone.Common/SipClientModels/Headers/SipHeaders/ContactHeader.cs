@@ -1,7 +1,7 @@
 ﻿using SoftPhone.Common.SipClientModels.Headers.Abstractions;
 using SoftPhone.Common.SipClientModels.UserAgents;
 
-namespace SoftPhone.Common.SipClientModels.Headers
+namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 {
     public class ContactHeader : HeaderBaseWithSipUri
     {

@@ -3,7 +3,7 @@ using SoftPhone.Common.SipClientModels.UserAgents;
 using SoftPhone.Common.StringHelpers;
 using System;
 
-namespace SoftPhone.Common.SipClientModels.Headers
+namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 {
     public class ToHeader : HeaderBaseWithHash
     {

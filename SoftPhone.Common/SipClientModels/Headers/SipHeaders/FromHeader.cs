@@ -1,20 +1,20 @@
 ﻿using SoftPhone.Common.SipClientModels.Headers.Abstractions;
 using SoftPhone.Common.SipClientModels.UserAgents;
 
-namespace SoftPhone.Common.SipClientModels.Headers
+namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 {
     public class FromHeader : HeaderBaseWithHash
     {
-        private readonly string FriendlyName;
+        private readonly string friendlyName;
 
         public FromHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
         {
             HeaderPrefix = "From:";
 
             if (!string.IsNullOrWhiteSpace(sipUac.SipUser.Name))
-                FriendlyName = $"\"{sipUac.SipUser.Name}\" ";
+                this.friendlyName = $"\"{sipUac.SipUser.Name}\" ";
         }
 
-        public override string GetHeader() => $"{HeaderPrefix} {FriendlyName}<{new SipUri(User, Address, SipProtocol).GetSipUri()}>;{Tag}";
+        public override string GetHeader() => $"{HeaderPrefix} {this.friendlyName}<{new SipUri(User, Address, SipProtocol).GetSipUri()}>;{Tag}";
     }
 }

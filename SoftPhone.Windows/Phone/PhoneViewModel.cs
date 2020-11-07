@@ -9,7 +9,7 @@ namespace SoftPhone.Windows.Phone
 {
     public class PhoneViewModel : BindableBase
     {
-        SipClient _sipClient;
+        SipClient sipClient;
 
         public PhoneViewModel()
         {
@@ -20,9 +20,9 @@ namespace SoftPhone.Windows.Phone
             CancelCommand = new DelegateCommand(OnCancelCommand);
             AnswerCommand = new DelegateCommand(OnAnswerCommand);
 
-            _sipClient = new SipClient();
-            _sipClient.StatusMessageUpdated += _sipClient_StatusMessageUpdated;
-            _sipClient.IncomingCall += OnIncomingCall;
+            this.sipClient = new SipClient();
+            this.sipClient.StatusMessageUpdated += _sipClient_StatusMessageUpdated;
+            this.sipClient.IncomingCall += OnIncomingCall;
         }
 
         private void _sipClient_StatusMessageUpdated(SipClient sipClient, string message)
@@ -76,12 +76,12 @@ namespace SoftPhone.Windows.Phone
 
         private async void OnDialCommand(string cli)
         {
-            await _sipClient.DialAsync(cli);
+            await sipClient.DialAsync(cli);
         }
 
         private void OnCancelCommand()
         {
-            _sipClient.Cancel();
+            sipClient.Cancel();
         }
 
         private bool OnIncomingCall(SIPRequest sipRequest)
@@ -92,7 +92,7 @@ namespace SoftPhone.Windows.Phone
 
         private async void OnAnswerCommand()
         {
-            await AnswerCallAsync(_sipClient);
+            await AnswerCallAsync(sipClient);
         }
 
         private async Task AnswerCallAsync(SipClient sipClient)

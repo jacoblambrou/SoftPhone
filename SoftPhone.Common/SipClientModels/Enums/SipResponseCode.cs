@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftPhone.Common.SipClientModels
+namespace SoftPhone.Common.SipClientModels.Enums
 {
-    public enum SipResponse
+    public enum SipResponseCode
     {
         Trying = 100,
         Ringing = 180,
@@ -42,53 +42,5 @@ namespace SoftPhone.Common.SipClientModels
         VersionNotSupported = 505,
         Unwanted = 607,
         Rejected = 608
-    }
-    
-    public enum SipMethod
-    {
-        ACK,
-        BYE,
-        CANCEL,
-        INFO,
-        INVITE,
-        MESSAGE,
-        NOTIFY,
-        OPTIONS,
-        PRACK,
-        PUBLISH,
-        REFER,
-        REGISTER,
-        SUBSCRIBE,
-        UPDATE
-    }
-
-    public enum SipProtocol
-    {
-        sip,
-        sips
-    }
-
-    public enum ContentType
-    {
-        applicationSdp,
-
-    }
-
-    public enum SipTransport
-    {
-        TCP,
-        UDP
-    }
-
-    public enum CallDirection
-    {
-        Incoming,
-        Outgoing
-    }
-
-    public enum MessageType
-    {
-        Request,
-        Response
     }
 }

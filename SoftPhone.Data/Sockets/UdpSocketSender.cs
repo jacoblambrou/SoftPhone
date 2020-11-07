@@ -11,7 +11,7 @@ namespace SoftPhone.Data.Sockets
         public static event Action<string> StatusUpdated;
 
         public static bool messageSent = false;
-        static int s_listenPort = SIP.Server.Port;
+        static int listenPort = SIP.Server.Port;
 
         public static void SendCallback(IAsyncResult ar)
         {
@@ -30,7 +30,7 @@ namespace SoftPhone.Data.Sockets
 
             // send the message
             // the destination is defined by the server name and port
-            u.BeginSend(sendBytes, sendBytes.Length, server, s_listenPort, new AsyncCallback(SendCallback), u);
+            u.BeginSend(sendBytes, sendBytes.Length, server, listenPort, new AsyncCallback(SendCallback), u);
             int i = 0;
             // Do some work while we wait for the send to complete. For this example, we'll just sleep
             while (!messageSent)

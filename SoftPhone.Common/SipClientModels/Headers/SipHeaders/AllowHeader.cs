@@ -1,9 +1,10 @@
-﻿using SoftPhone.Common.SipClientModels.Headers.Abstractions;
+﻿using SoftPhone.Common.SipClientModels.Enums;
+using SoftPhone.Common.SipClientModels.Headers.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace SoftPhone.Common.SipClientModels.Headers
+namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 {
     public class AllowHeader : HeaderBase
     {
