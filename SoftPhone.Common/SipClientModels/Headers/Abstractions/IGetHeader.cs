@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
 {
-    public interface IHeader
+    public interface IGetHeader
     {
         string GetHeader();
     }

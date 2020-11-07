@@ -5,7 +5,7 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class AuthorizationHeader : IHeader
+    public class AuthorizationHeader : HeaderBase
     {
         
     }

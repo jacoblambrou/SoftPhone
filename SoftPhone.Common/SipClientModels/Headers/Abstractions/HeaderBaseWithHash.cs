@@ -4,15 +4,17 @@ using System;
 
 namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
 {
-    public class HashHeaderBase : HeaderBase, IHashHeaderGenerator
+    public abstract class HeaderBaseWithHash : HeaderBaseWithSipUri, IHashHeaderGenerator
     {
         public string Tag;
 
-        public HashHeaderBase(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
+        public HeaderBaseWithHash(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
         {
             
         }
 
         public string GenerateUniqueHash() => HashGenerator.ConvertToHash($"{DateTime.Now:dd/MM/yyyy HH:mm:ss.fff}{Guid.NewGuid()}");
+
+        public abstract override string GetHeader();
     }
 }

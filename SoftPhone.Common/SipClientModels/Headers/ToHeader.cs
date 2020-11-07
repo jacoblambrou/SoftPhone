@@ -5,16 +5,13 @@ using System;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class ToHeader : HashHeaderBase, IHeader, IHashHeaderGenerator
+    public class ToHeader : HeaderBaseWithHash
     {
         public ToHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
         {
-            
+            HeaderPrefix = "To:";
         }
 
-        public string GetHeader()
-        {
-            return $"To: <{new SipUri(User, Address, SipProtocol).GetSipUri()}>;{Tag}";
-        }
+        public override string GetHeader() => $"{HeaderPrefix} <{new SipUri(User, Address, SipProtocol).GetSipUri()}>;{Tag}";
     }
 }

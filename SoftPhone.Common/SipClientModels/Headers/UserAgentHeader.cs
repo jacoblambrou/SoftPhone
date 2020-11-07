@@ -5,14 +5,15 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class UserAgentHeader : IHeader
+    public class UserAgentHeader : IGetHeader
     {
+        const string HeaderPrefix = "User-Agent:";
         const string Name = "Jakes Soft Phone";
         const string Version = "1.0.0";
 
         public string GetHeader()
         {
-            return $"User-Agent: {Name}/{Version}";
+            return $"{HeaderPrefix} {Name}/{Version}";
         }
     }
 }

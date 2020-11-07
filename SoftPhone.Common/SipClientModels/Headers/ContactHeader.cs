@@ -3,13 +3,13 @@ using SoftPhone.Common.SipClientModels.UserAgents;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class ContactHeader : HeaderBase, IHeader
+    public class ContactHeader : HeaderBaseWithSipUri
     {
         public ContactHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base (sipUac, sipTransportManager)
         {
-            
+            HeaderPrefix = "Contact:";
         }
 
-        public string GetHeader() => $"Contact: <{new SipUri(User, Address, SipProtocol).GetSipUri()}:{Port}>";
+        public override string GetHeader() => $"{HeaderPrefix} <{new SipUri(User, Address, SipProtocol).GetSipUri()}:{Port}>";
     }
 }

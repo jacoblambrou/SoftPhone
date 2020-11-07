@@ -6,12 +6,13 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class RouteHeader : HeaderBase, IHeader
+    public class RouteHeader : HeaderBaseWithSipUri
     {
         public RouteHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
         {
+            HeaderPrefix = "Route:";
         }
 
-        public string GetHeader() => $"Route: <{new SipUri(User, Address, SipProtocol).GetSipUri()};lr";
+        public override string GetHeader() => $"{HeaderPrefix} <{new SipUri(User, Address, SipProtocol).GetSipUri()};lr";
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SoftPhone.Common.SipClientModels.SipMessages;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,7 +11,7 @@ namespace SoftPhone.Common.SipClientModels
         private readonly int _listeningPort;
         private readonly CallDirection _callDirection;
 
-        public SipMessage _sipMessage;
+        public SipMessageBase SipMessage { get; private set; }
 
         public SipSession(string callId, int listeningPort, CallDirection callDirection)
         {

@@ -5,10 +5,15 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class ExpiresHeader : IHeader
+    public class ExpiresHeader : HeaderBase
     {
         private int _expiry = 180;
 
-        public string GetHeader() => $"Expires: {_expiry}";
+        public ExpiresHeader()
+        {
+            HeaderPrefix = "Expires:";
+        }
+
+        public override string GetHeader() => $"{HeaderPrefix} {_expiry}";
     }
 }

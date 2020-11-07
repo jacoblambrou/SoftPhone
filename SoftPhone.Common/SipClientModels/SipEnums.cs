@@ -85,4 +85,10 @@ namespace SoftPhone.Common.SipClientModels
         Incoming,
         Outgoing
     }
+
+    public enum MessageType
+    {
+        Request,
+        Response
+    }
 }

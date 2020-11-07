@@ -5,18 +5,16 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class ContentLength : IHeader
+    public class ContentLength : HeaderBase
     {
         private int _length;
 
         public ContentLength(SipBody body)
         {
+            HeaderPrefix = "Content-Length:";
             _length = body.GetLength();
         }
 
-        public string GetHeader()
-        {
-            return $"Content-Length: {_length}";
-        }
+        public override string GetHeader() => $"{HeaderPrefix} {_length}";
     }
 }

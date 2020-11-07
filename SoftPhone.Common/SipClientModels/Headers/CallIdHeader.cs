@@ -6,17 +6,18 @@ using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class CallIdHeader : IHeader, IHashHeaderGenerator
+    public class CallIdHeader : HeaderBase, IHashHeaderGenerator
     {
         private readonly string _callId;
 
         public CallIdHeader()
         {
+            HeaderPrefix = "Call-ID:";
             _callId = GenerateUniqueHash();
         }
 
         public string GenerateUniqueHash() => HashGenerator.ConvertToHash($"{DateTime.Now:dd/MM/yyyy HH:mm:ss.fff}{Guid.NewGuid()}");
 
-        public string GetHeader() =>  $"Call-ID: {_callId}";
+        public override string GetHeader() =>  $"{HeaderPrefix} {_callId}";
     }
 }

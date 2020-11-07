@@ -5,18 +5,18 @@ using System;
 
 namespace SoftPhone.Common.SipClientModels.Headers
 {
-    public class ViaHeader : HeaderBase, IHeader
+    public class ViaHeader : HeaderBaseWithSipUri
     {
         private string Branch => HashGenerator.ConvertToHash($"{DateTime.Now:dd/MM/yyyy HH:mm:ss.fff}{Guid.NewGuid()}");
         private string RPort = "rport";
         private readonly SipTransport SipTransport;
-        public string ConcatenateHeader => $"Via: SIP/2.0/{SipTransport} {Address}:{Port};{RPort};branch=z9hG4bK{Branch}"; // TODO: Update to use SipUri
 
-        public ViaHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base (sipUac, sipTransportManager)
+        public ViaHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
         {
+            HeaderPrefix = "Via: SIP/2.0/";
             SipTransport = sipTransportManager.SipTransport;
         }
 
-        public string GetHeader() => $"Via: SIP/2.0/{SipTransport} {Address}:{Port};{RPort};branch=z9hG4bK{Branch}";
+        public override string GetHeader() => $"{SipTransport} {Address}:{Port};{RPort};branch=z9hG4bK{Branch}";
     }
 }
