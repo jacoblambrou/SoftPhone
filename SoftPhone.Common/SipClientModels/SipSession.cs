@@ -11,14 +11,20 @@ namespace SoftPhone.Common.SipClientModels
         private readonly string callId;
         private readonly int listeningPort;
         private readonly CallDirection callDirection;
-
+        
+        public bool Busy = false;
         public SipMessage SipMessage { get; private set; }
 
-        public SipSession(string callId, int listeningPort, CallDirection callDirection)
+        public SipSession(/*string callId, */int listeningPort, CallDirection callDirection)
         {
-            this.callId = callId;
+            //this.callId = callId;
             this.listeningPort = listeningPort;
             this.callDirection = callDirection;
+        }
+
+        public void SendSipMessage()
+        {
+            //UdpSocketSender.SendMessage();
         }
     }
 }

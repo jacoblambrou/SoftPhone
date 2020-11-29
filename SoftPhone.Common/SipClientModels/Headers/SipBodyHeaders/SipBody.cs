@@ -13,6 +13,7 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipBodyHeaders
 
         public SipBody()
         {
+            
 
         }
 

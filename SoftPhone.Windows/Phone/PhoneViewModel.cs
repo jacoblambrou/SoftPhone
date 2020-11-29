@@ -1,5 +1,6 @@
 ﻿using Prism.Commands;
 using Prism.Mvvm;
+using SoftPhone.Common.SipClientModels.UserAgents;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace SoftPhone.Windows.Phone
 {
     public class PhoneViewModel : BindableBase
     {
-        SipClient sipClient;
+        SipUserAgentClient sipUAC;
 
         public PhoneViewModel()
         {
@@ -20,14 +21,14 @@ namespace SoftPhone.Windows.Phone
             CancelCommand = new DelegateCommand(OnCancelCommand);
             AnswerCommand = new DelegateCommand(OnAnswerCommand);
 
-            this.sipClient = new SipClient();
-            this.sipClient.StatusMessageUpdated += _sipClient_StatusMessageUpdated;
-            this.sipClient.IncomingCall += OnIncomingCall;
+            this.sipUAC = new SipUserAgentClient();
+            this.sipUAC.StatusMessageUpdated += sipUAC_StatusMessageUpdated;
+            this.sipUAC.IncomingCall += OnIncomingCall;
         }
 
-        private void _sipClient_StatusMessageUpdated(SipClient sipClient, string message)
+        private void sipUAC_StatusMessageUpdated(SipUserAgentClient sipUaClient, string message)
         {
-            Status = $"{Status}{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}: {sipClient}: {message}\r\n";
+            Status = $"{Status}{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}: {sipUaClient}: {message}\r\n";
         }
 
         private string _cli;
@@ -76,12 +77,12 @@ namespace SoftPhone.Windows.Phone
 
         private async void OnDialCommand(string cli)
         {
-            await sipClient.DialAsync(cli);
+            await sipUAC.DialAsync(cli);
         }
 
         private void OnCancelCommand()
         {
-            sipClient.Cancel();
+            sipUAC.Cancel();
         }
 
         private bool OnIncomingCall(SIPRequest sipRequest)
@@ -92,13 +93,13 @@ namespace SoftPhone.Windows.Phone
 
         private async void OnAnswerCommand()
         {
-            await AnswerCallAsync(sipClient);
+            await AnswerCallAsync(sipUAC);
         }
 
-        private async Task AnswerCallAsync(SipClient sipClient)
+        private async Task AnswerCallAsync(SipUserAgentClient sipUaClient)
         {
             //TODO: Create GUI answer method.
-            bool result = await sipClient.AnswerAsync();
+            bool result = await sipUaClient.AnswerAsync();
         }
     }
 

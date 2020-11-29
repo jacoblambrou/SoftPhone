@@ -15,9 +15,6 @@ namespace SoftPhone.Common.SipClientModels
             this.sipProtocol = sipProtocol;
         }
 
-        public string GetSipUri()
-        {
-            return $"{this.sipProtocol.ToString()}:{this.user}@{this.host}";
-        }
+        public string GetSipUri() => $"{this.sipProtocol}:{this.user}@{this.host}";
     }
 }

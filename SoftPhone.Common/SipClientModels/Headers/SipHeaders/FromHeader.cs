@@ -15,6 +15,6 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
                 this.friendlyName = $"\"{sipUac.SipUser.Name}\" ";
         }
 
-        public override string GetHeader() => $"{HeaderPrefix} {this.friendlyName}<{new SipUri(User, Address, SipProtocol).GetSipUri()}>;{Tag}";
+        public override string GetHeader() => $"{HeaderPrefix} {this.friendlyName}<{SipUri.GetSipUri()}>;{Tag}";
     }
 }

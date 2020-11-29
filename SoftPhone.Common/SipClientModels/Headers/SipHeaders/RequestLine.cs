@@ -8,7 +8,7 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
     {
         private SipMethod sipMethod;
 
-        public RequestLine(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipMethod sipMethod) : base (sipUac, sipTransportManager)
+        public RequestLine(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipMethod sipMethod) : base(sipUac, sipTransportManager)
         {
             HeaderPrefix = "Request-Line:";
             this.sipMethod = sipMethod;

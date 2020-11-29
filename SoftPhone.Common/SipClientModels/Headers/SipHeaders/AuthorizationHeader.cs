@@ -11,9 +11,6 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
         {
             HeaderPrefix = "Authorization:";
         }
-        public override string GetHeader()
-        {
-            throw new NotImplementedException();
-        }
+        public override string GetHeader() => $"{HeaderPrefix}";
     }
 }

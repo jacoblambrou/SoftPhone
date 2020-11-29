@@ -15,16 +15,15 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 
         public override string GetHeader() =>
             $"{HeaderPrefix} " +
-            $"{SipMethod.ACK.ToString()}, " +
-            $"{SipMethod.BYE.ToString()}, " +
-            $"{SipMethod.CANCEL.ToString()}, " +
-            $"{SipMethod.INFO.ToString()}, " +
-            $"{SipMethod.MESSAGE.ToString()}, " +
-            $"{SipMethod.NOTIFY.ToString()}, " +
-            $"{SipMethod.OPTIONS.ToString()}, " +
-            $"{SipMethod.PRACK.ToString()}, " +
-            $"{SipMethod.REFER.ToString()}, " +
-            $"{SipMethod.UPDATE.ToString()}";
-        
+            $"{SipMethod.ACK}, " +
+            $"{SipMethod.BYE}, " +
+            $"{SipMethod.CANCEL}, " +
+            $"{SipMethod.INFO}, " +
+            $"{SipMethod.MESSAGE}, " +
+            $"{SipMethod.NOTIFY}, " +
+            $"{SipMethod.OPTIONS}, " +
+            $"{SipMethod.PRACK}, " +
+            $"{SipMethod.REFER}, " +
+            $"{SipMethod.UPDATE}";
     }
 }
