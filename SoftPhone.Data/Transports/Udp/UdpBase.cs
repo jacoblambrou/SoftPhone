@@ -4,7 +4,7 @@ using System.Text;
 
 namespace SoftPhone.Data.Transports.Udp
 {
-    public class UdpBase : TransportBase, IDisposable
+    internal class UdpBase : TransportBase, IDisposable
     {
         protected UdpClientWithDisposedStatus UdpClient;
 

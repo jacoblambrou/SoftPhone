@@ -28,15 +28,17 @@ namespace SoftPhone.Common.SipClientModels.UserAgents
             await CreateSipSessionAsync(CallDirection.Outgoing);
         }
 
-        private async Task CreateSipSessionAsync(CallDirection callDirection)
+        private async Task<bool> CreateSipSessionAsync(CallDirection callDirection)
         {
             for (int i = 0; i < totalConcurrentSipSessions; i++)
             {
                 if (SipSessions[i] == null)
                 {
-                    SipSessions[i] = new SipSession(LocalSipUas.SipPort, callDirection);
+                    SipSessions[i] = new SipSession(LocalSipUas, RemoteSipUas, callDirection);
+                    return true;
                 }
             }
+            return false;
         }
     }
 }

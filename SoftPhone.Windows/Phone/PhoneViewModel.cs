@@ -22,13 +22,8 @@ namespace SoftPhone.Windows.Phone
             AnswerCommand = new DelegateCommand(OnAnswerCommand);
 
             this.sipUAC = new SipUserAgentClient();
-            this.sipUAC.StatusMessageUpdated += sipUAC_StatusMessageUpdated;
-            this.sipUAC.IncomingCall += OnIncomingCall;
-        }
-
-        private void sipUAC_StatusMessageUpdated(SipUserAgentClient sipUaClient, string message)
-        {
-            Status = $"{Status}{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}: {sipUaClient}: {message}\r\n";
+            //this.sipUAC.StatusMessageUpdated += sipUAC_StatusMessageUpdated;
+            //this.sipUAC.IncomingCall += OnIncomingCall;
         }
 
         private string _cli;
@@ -82,10 +77,10 @@ namespace SoftPhone.Windows.Phone
 
         private void OnCancelCommand()
         {
-            sipUAC.Cancel();
+            //sipUAC.Cancel();
         }
 
-        private bool OnIncomingCall(SIPRequest sipRequest)
+        private bool OnIncomingCall(/*SIPRequest sipRequest*/)
         {
             IncomingCall = true;
             return IncomingCall;
@@ -99,7 +94,12 @@ namespace SoftPhone.Windows.Phone
         private async Task AnswerCallAsync(SipUserAgentClient sipUaClient)
         {
             //TODO: Create GUI answer method.
-            bool result = await sipUaClient.AnswerAsync();
+            //bool result = await sipUaClient.AnswerAsync();
+        }
+
+        private void sipUAC_StatusMessageUpdated(SipUserAgentClient sipUaClient, string message)
+        {
+            Status = $"{Status}{DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss.fff")}: {sipUaClient}: {message}\r\n";
         }
     }
 

@@ -27,15 +27,27 @@ namespace SoftPhone.Common.SipClientModels.SipMessages
         private WwwAuthenticateHeader wwwAuthenticationHeader;
         private SipBody body;
 
-        public SipMessage(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipMethod sipMethod, SipResponseCode sipResponse)
+        public SipMessage(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipMethod sipMethod)
         {
-            this.messageType = GetMessageType(sipMethod, sipResponse);
+            this.messageType = MessageType.Request;
+            this.requestLine = new RequestLine(sipUac, sipTransportManager, sipMethod);
+            this.viaHeader = new ViaHeader(sipUac, sipTransportManager);
+            this.fromHeader = new FromHeader(sipUac, sipTransportManager);
+            this.toHeader = new ToHeader(sipUac, sipTransportManager);
+            this.callIdHeader = new CallIdHeader();
+            this.contactHeader = new ContactHeader(sipUac, sipTransportManager);
+            this.routeHeader = new RouteHeader(sipUac, sipTransportManager);
+            this.userAgent = new UserAgentHeader();
+            this.expiresHeader = new ExpiresHeader();
+            this.maxForwards = new MaxForwardsHeader();
+            this.allowHeader = new AllowHeader();
+            this.contentLength = new ContentLength(body);
+        }
 
-            if (this.messageType == MessageType.Request)
-                this.requestLine = new RequestLine(sipUac, sipTransportManager, sipMethod);
-            else
-                this.statusLine = new StatusLine(sipUac, sipTransportManager, sipResponse);
-
+        public SipMessage(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipResponseCode sipResponse)
+        {
+            this.messageType = MessageType.Response;
+            this.statusLine = new StatusLine(sipUac, sipTransportManager, sipResponse);
             this.viaHeader = new ViaHeader(sipUac, sipTransportManager);
             this.fromHeader = new FromHeader(sipUac, sipTransportManager);
             this.toHeader = new ToHeader(sipUac, sipTransportManager);
@@ -63,9 +75,7 @@ namespace SoftPhone.Common.SipClientModels.SipMessages
         private string GetStatusMessage() =>
             $"{this.statusLine.GetHeader()}{Environment.NewLine}{GetHeaders()}";
 
-        private string GetHeaders()
-        {
-            return
+        private string GetHeaders() =>
                 $"{this.viaHeader.GetHeader()}{Environment.NewLine}" +
                 $"{this.fromHeader.GetHeader()}{Environment.NewLine}" +
                 $"{this.toHeader.GetHeader()}{Environment.NewLine}" +
@@ -77,17 +87,5 @@ namespace SoftPhone.Common.SipClientModels.SipMessages
                 $"{this.maxForwards.GetHeader()}{Environment.NewLine}" +
                 $"{this.allowHeader.GetHeader()}{Environment.NewLine}" +
                 $"{this.contentLength.GetHeader()}{Environment.NewLine}";
-        }
-
-        private MessageType GetMessageType(SipMethod? sipMethod, SipResponseCode? sipResponse)
-        {
-            if (sipMethod != null && sipResponse != null)
-                throw new ArgumentOutOfRangeException("sipMethod and sipResponse cannot both be set.");
-
-            else if (sipMethod != null)
-                return MessageType.Request;
-            else
-                return MessageType.Response;
-        }
     }
 }
