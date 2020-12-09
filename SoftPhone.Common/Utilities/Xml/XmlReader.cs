@@ -32,7 +32,7 @@ namespace SoftPhone.Data.Xml
             sipUAC.RemoteSipUas.SipServerAddress = xmlDoc.GetElementsByTagName("SipServerAddress")[0].InnerText;
             sipUAC.RemoteSipUas.RegisterAddress = xmlDoc.GetElementsByTagName("SipRegisterAddress")[0].InnerText;
             sipUAC.RemoteSipUas.Domain = xmlDoc.GetElementsByTagName("Domain")[0].InnerText;
-            sipUAC.RemoteSipUas.Port = int.Parse(xmlDoc.GetElementsByTagName("SipServerPort")[0].InnerText);
+            sipUAC.RemoteSipUas.SipPort = int.Parse(xmlDoc.GetElementsByTagName("SipServerPort")[0].InnerText);
             sipUAC.RemoteSipUas.Expiry = int.Parse(xmlDoc.GetElementsByTagName("Expiry")[0].InnerText);
 
             return sipUAC;

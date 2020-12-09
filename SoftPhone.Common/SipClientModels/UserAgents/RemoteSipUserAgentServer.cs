@@ -9,7 +9,7 @@ namespace SoftPhone.Common.SipClientModels.UserAgents
         public string SipServerAddress { get; set; }
         public string RegisterAddress { get; set; }
         public string Domain { get; set; }
-        public int Port { get; set; }
+        public int SipPort { get; set; }
         public int Expiry { get; set; } = 180;
     }
 }

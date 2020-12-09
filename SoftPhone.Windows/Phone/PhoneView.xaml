@@ -11,7 +11,7 @@
     <UserControl.Resources>
         <conv:NegatableBooleanToVisibilityConverter x:Key="VisConverter" />
         <conv:NegatableBooleanToVisibilityConverter x:Key="NegVisConverter"
-                                                    Negate="True"/>
+                                                    Negate="True" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>

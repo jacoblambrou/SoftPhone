@@ -23,18 +23,29 @@ namespace SoftPhone.Common.SipClientModels.UserAgents
             SipSessions = new SipSession[2];
         }
 
-        public async Task DialAsync(string cli)
+        public async Task<bool> DialAsync(string cli)
         {
-            await CreateSipSessionAsync(CallDirection.Outgoing);
+            await CreateSipSessionAsync();
+
+            for (int i = 0; i < totalConcurrentSipSessions; i++)
+            {
+                if (SipSessions[i].IsBusy == false)
+                {
+                    SipSessions[i].UpdateRemoteCli(cli);
+                    await SipSessions[i].SendSipMessageAsync();
+                    return true;
+                }
+            }
+            return false;
         }
 
-        private async Task<bool> CreateSipSessionAsync(CallDirection callDirection)
+        private async Task<bool> CreateSipSessionAsync()
         {
             for (int i = 0; i < totalConcurrentSipSessions; i++)
             {
                 if (SipSessions[i] == null)
                 {
-                    SipSessions[i] = new SipSession(LocalSipUas, RemoteSipUas, callDirection);
+                    SipSessions[i] = new SipSession(SipUser, LocalSipUas, RemoteSipUas);
                     return true;
                 }
             }

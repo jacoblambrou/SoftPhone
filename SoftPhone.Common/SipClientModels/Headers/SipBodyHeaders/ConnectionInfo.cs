@@ -1,6 +1,7 @@
 ﻿using SoftPhone.Common.SipClientModels.Headers.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Text;
 
 namespace SoftPhone.Common.SipClientModels.Headers.SipBodyHeaders
@@ -13,6 +14,7 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipBodyHeaders
         public ConnectionInfo()
         {
             HeaderPrefix = "c=";
+            this.address = IPAddress.Any.ToString();
         }
         public override string GetHeader() => $"{HeaderPrefix}{Protocol} {this.address}";
     }

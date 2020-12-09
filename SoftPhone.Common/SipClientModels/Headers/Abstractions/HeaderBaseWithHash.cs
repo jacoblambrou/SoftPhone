@@ -1,4 +1,5 @@
-﻿using SoftPhone.Common.SipClientModels.UserAgents;
+﻿using SoftPhone.Common.SipClientModels.Enums;
+using SoftPhone.Common.SipClientModels.UserAgents;
 using SoftPhone.Common.StringHelpers;
 using System;
 
@@ -8,7 +9,7 @@ namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
     {
         public string Tag;
 
-        public HeaderBaseWithHash(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
+        public HeaderBaseWithHash(LocalSipUserAgentServer localSipUas, SipProtocol sipProtocol) : base(localSipUas, sipProtocol)
         {
             
         }

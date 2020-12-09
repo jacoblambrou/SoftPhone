@@ -8,7 +8,7 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
     {
         private SipResponseCode sipResponse;
 
-        public StatusLine(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipResponseCode sipResponse) : base(sipUac, sipTransportManager)
+        public StatusLine(LocalSipUserAgentServer localSipUas, SipProtocol sipProtocol, SipResponseCode sipResponse) : base(localSipUas, sipProtocol)
         {
             HeaderPrefix = "Status-Line:";
             this.sipResponse = sipResponse;

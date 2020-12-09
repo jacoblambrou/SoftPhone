@@ -1,4 +1,5 @@
-﻿using SoftPhone.Common.SipClientModels.Headers.Abstractions;
+﻿using SoftPhone.Common.SipClientModels.Enums;
+using SoftPhone.Common.SipClientModels.Headers.Abstractions;
 using SoftPhone.Common.SipClientModels.UserAgents;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
 {
     public class RouteHeader : HeaderBaseWithSipUri
     {
-        public RouteHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
+        public RouteHeader(LocalSipUserAgentServer localSipUas, SipProtocol sipProtocol) : base(localSipUas, sipProtocol)
         {
             HeaderPrefix = "Route:";
         }

@@ -14,11 +14,11 @@ namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
         protected SipUri SipUri { get; set; }
         protected SipProtocol SipProtocol { get; set; }
 
-        public HeaderBaseWithSipUri(SipUserAgentClient sipUac, SipTransportManager sipTransportManager)
+        public HeaderBaseWithSipUri(LocalSipUserAgentServer localSipUas, SipProtocol sipProtocol)
         {
-            Address = sipUac.LocalSipUas.Address;
-            Port = DefineSipPortBasedOnProtocol(sipTransportManager.SipProtocol, sipUac.LocalSipUas);
-            SipProtocol = sipTransportManager.SipProtocol;
+            this.Address = localSipUas.Address;
+            this.Port = DefineSipPortBasedOnProtocol(sipProtocol, localSipUas);
+            this.SipProtocol = sipProtocol;
         }
 
         private int DefineSipPortBasedOnProtocol(SipProtocol sipProtocol, LocalSipUserAgentServer localSipUac)
@@ -27,6 +27,17 @@ namespace SoftPhone.Common.SipClientModels.Headers.Abstractions
                 return localSipUac.SipPort;
             //else
             //    return localSipUac.SipsPort;
+        }
+
+        internal void SetUser(string user)
+        {
+            this.User = user;
+            SetSipUri();
+        }
+
+        private void SetSipUri()
+        {
+            this.SipUri = new SipUri(User, Address, SipProtocol);
         }
 
         public abstract override string GetHeader();

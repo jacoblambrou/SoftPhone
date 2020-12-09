@@ -12,10 +12,10 @@ namespace SoftPhone.Common.SipClientModels.Headers.SipHeaders
         private string rPort = "rport";
         private readonly SipTransport sipTransport;
 
-        public ViaHeader(SipUserAgentClient sipUac, SipTransportManager sipTransportManager) : base(sipUac, sipTransportManager)
+        public ViaHeader(LocalSipUserAgentServer localSipUas, SipProtocol sipProtocol, SipTransport sipTransport) : base(localSipUas, sipProtocol)
         {
             HeaderPrefix = "Via: SIP/2.0/";
-            this.sipTransport = sipTransportManager.SipTransport;
+            this.sipTransport = sipTransport;
         }
 
         public override string GetHeader() => $"{this.sipTransport} {Address}:{Port};{this.rPort};branch=z9hG4bK{this.branch}";

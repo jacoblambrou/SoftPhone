@@ -16,21 +16,23 @@ namespace SoftPhone.Common.SipClientModels
         public LocalSipUserAgentServer LocalSipUas;
         public RemoteSipUserAgentServer RemoteSipUas;
         public SipTransportManager TransportManager;
+        public string LocalCli;
+        public string RemoteCli;
 
-        public bool Busy = false;
+        public bool IsBusy = false;                                   //TODO: Change to IState object
         public SipMessage SipMessage { get; private set; }
 
-        public SipSession(LocalSipUserAgentServer localSipUas, RemoteSipUserAgentServer remoteSipUas, CallDirection callDirection)
+        public SipSession(SipUser sipUser, LocalSipUserAgentServer localSipUas, RemoteSipUserAgentServer remoteSipUas)
         {
             this.LocalSipUas = localSipUas;
             this.RemoteSipUas = remoteSipUas;
-            this.callDirection = callDirection;
+            this.TransportManager = new SipTransportManager(LocalSipUas.SipPort, RemoteSipUas.SipServerAddress, RemoteSipUas.SipPort);
+            this.SipMessage = new SipMessage(sipUser, LocalSipUas, TransportManager, SipMethod.INVITE);
+        }
 
-            if (callDirection == CallDirection.Outgoing)
-            {
-                this.SipMessage = new SipMessage(localSipUas, remoteSipUas,);
-            }
-            
+        internal void UpdateRemoteCli(string cli)
+        {
+            SipMessage.UpdateRemoteCli(cli);
         }
 
         public async Task SendSipMessageAsync()

@@ -11,24 +11,28 @@ namespace SoftPhone.Common.SipClientModels
     public class SipTransportManager
     {
         private UdpClientWithDisposedStatus udpClient;
-        
+        private string remoteServerAddress;
+        private int remoteServerPort;
+
         public SipProtocol SipProtocol;
         public SipTransport SipTransport;
         public UdpUser UdpUser;
         public UdpServer UdpServer;
 
-        public SipTransportManager(SipProtocol sipProtocol, SipTransport sipTransport, int port)
+        public SipTransportManager(int localServerPort, string remoteServerAddress, int remoteServerPort, SipProtocol sipProtocol = SipProtocol.sip, SipTransport sipTransport = SipTransport.TCP)
         {
-            this.udpClient = new UdpClientWithDisposedStatus(port);
+            this.udpClient = new UdpClientWithDisposedStatus(localServerPort);
             this.SipProtocol = sipProtocol;
             this.SipTransport = sipTransport;
             this.UdpUser = new UdpUser(udpClient);
             this.UdpServer = new UdpServer(udpClient);
+            this.remoteServerAddress = remoteServerAddress;
+            this.remoteServerPort = remoteServerPort;
         }
 
         internal async Task SendSipMessageAsync(SipMessage sipMessage)
         {
-            await UdpUser.SendAsync();
+            await UdpUser.SendAsync(remoteServerAddress, remoteServerPort, sipMessage.GetSipMessage());
         }
     }
 }

@@ -27,38 +27,23 @@ namespace SoftPhone.Common.SipClientModels.SipMessages
         private WwwAuthenticateHeader wwwAuthenticationHeader;
         private SipBody body;
 
-        public SipMessage(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipMethod sipMethod)
+        public SipMessage(SipUser sipUser, LocalSipUserAgentServer localSipUas, SipTransportManager sipTransportManager, SipMethod sipMethod)
         {
             this.messageType = MessageType.Request;
-            this.requestLine = new RequestLine(sipUac, sipTransportManager, sipMethod);
-            this.viaHeader = new ViaHeader(sipUac, sipTransportManager);
-            this.fromHeader = new FromHeader(sipUac, sipTransportManager);
-            this.toHeader = new ToHeader(sipUac, sipTransportManager);
-            this.callIdHeader = new CallIdHeader();
-            this.contactHeader = new ContactHeader(sipUac, sipTransportManager);
-            this.routeHeader = new RouteHeader(sipUac, sipTransportManager);
-            this.userAgent = new UserAgentHeader();
-            this.expiresHeader = new ExpiresHeader();
-            this.maxForwards = new MaxForwardsHeader();
-            this.allowHeader = new AllowHeader();
-            this.contentLength = new ContentLength(body);
+            this.requestLine = new RequestLine(localSipUas, sipTransportManager.SipProtocol, sipMethod);
+            CreateCommonHeaders(sipUser, localSipUas, sipTransportManager);
         }
 
-        public SipMessage(SipUserAgentClient sipUac, SipTransportManager sipTransportManager, SipResponseCode sipResponse)
+        public SipMessage(SipUser sipUser, LocalSipUserAgentServer localSipUas, SipTransportManager sipTransportManager, SipResponseCode sipResponse)
         {
             this.messageType = MessageType.Response;
-            this.statusLine = new StatusLine(sipUac, sipTransportManager, sipResponse);
-            this.viaHeader = new ViaHeader(sipUac, sipTransportManager);
-            this.fromHeader = new FromHeader(sipUac, sipTransportManager);
-            this.toHeader = new ToHeader(sipUac, sipTransportManager);
-            this.callIdHeader = new CallIdHeader();
-            this.contactHeader = new ContactHeader(sipUac, sipTransportManager);
-            this.routeHeader = new RouteHeader(sipUac, sipTransportManager);
-            this.userAgent = new UserAgentHeader();
-            this.expiresHeader = new ExpiresHeader();
-            this.maxForwards = new MaxForwardsHeader();
-            this.allowHeader = new AllowHeader();
-            this.contentLength = new ContentLength(body);
+            this.statusLine = new StatusLine(localSipUas, sipTransportManager.SipProtocol, sipResponse);
+            CreateCommonHeaders(sipUser, localSipUas, sipTransportManager);
+        }
+
+        internal void UpdateRemoteCli(string cli)
+        {
+            this.toHeader.SetUser(cli);
         }
 
         public string GetSipMessage()
@@ -67,6 +52,21 @@ namespace SoftPhone.Common.SipClientModels.SipMessages
                 return GetRequestMessage();
             else
                 return GetStatusMessage();
+        }
+
+        private void CreateCommonHeaders(SipUser sipUser, LocalSipUserAgentServer localSipUas, SipTransportManager sipTransportManager)
+        {
+            this.viaHeader = new ViaHeader(localSipUas, sipTransportManager.SipProtocol, sipTransportManager.SipTransport);
+            this.fromHeader = new FromHeader(sipUser, localSipUas, sipTransportManager.SipProtocol);
+            this.toHeader = new ToHeader(localSipUas, sipTransportManager.SipProtocol);
+            this.callIdHeader = new CallIdHeader();
+            this.contactHeader = new ContactHeader(localSipUas, sipTransportManager.SipProtocol);
+            this.routeHeader = new RouteHeader(localSipUas, sipTransportManager.SipProtocol);
+            this.userAgent = new UserAgentHeader();
+            this.expiresHeader = new ExpiresHeader();
+            this.maxForwards = new MaxForwardsHeader();
+            this.allowHeader = new AllowHeader();
+            this.contentLength = new ContentLength(body);
         }
 
         private string GetRequestMessage() =>
